@@ -3,10 +3,7 @@ import { Media, Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } f
 import DishDetail  from './DishDetailComponent';
 
 class Menu extends Component{
-    constructor(props){
-        super(props);
-    }
-
+   
     render(){
         const menu = this.props.dishes.map((dish)=>{
             return (
