@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 'reactstrap';
+import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 
 class DishDetail extends Component{
@@ -11,7 +12,7 @@ class DishDetail extends Component{
     render(){       
         if (this.props.dish != null){
 
-            const comments = this.props.dish.comments.map((comment)=>{
+            const comments = this.props.comments.map((comment)=>{
                 return (
                     <div key={comment.id}>
                         <p>By {comment.author}  at  
@@ -24,17 +25,27 @@ class DishDetail extends Component{
             });
 
             return(
-                <div>
-                    <div className="col-12 col-md-5 m-1">
-                    <Card >
-                    <CardImg width="100%" src = {this.props.dish.image} alt = {this.props.dish.name}/>
-                    <CardBody>
-                        <CardTitle>{this.props.dish.name}</CardTitle>
-                        <CardText>{this.props.dish.description}</CardText>
-                    </CardBody>
-                    </Card>            
-                    </div>
-                    <div className="col-12 col-md-5 m-1">{comments}</div>  
+                <div className="container">
+                     <div className="row">
+                        <Breadcrumb>
+                            <BreadcrumbItem><Link to='/menu'>Menu</Link></BreadcrumbItem>
+                            <BreadcrumbItem active>{this.props.dish.name}</BreadcrumbItem>
+                        </Breadcrumb>
+                        <div className="col-12">
+                            <h3>{this.props.dish.name}</h3>
+                            <hr/>
+                        </div>       
+                     </div>
+                     <div className="row">
+                        <Card >
+                        <CardImg width="100%" src = {this.props.dish.image} alt = {this.props.dish.name}/>
+                        <CardBody>
+                            <CardTitle>{this.props.dish.name}</CardTitle>
+                            <CardText>{this.props.dish.description}</CardText>
+                        </CardBody>
+                        </Card>   
+                        {comments}>   
+                     </div>
                 </div>
             );
         }
